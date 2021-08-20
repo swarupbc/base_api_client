@@ -2,7 +2,7 @@
 
 ## Features 
 
-1. Easy REST API Calling (GET, POST, PUT, DELETE)
+1. Easy http REST API Calling (GET, POST, PUT, DELETE)
 2. ERROR handling with alert dialog
 3. Loading Screen while calling any API
 
