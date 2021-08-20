@@ -1,5 +1,5 @@
 name: base_api_client
-description: Base API Client to handle API calling and errors easily with loading.
+description: Base API Client to handle http API calling and errors easily with loading.
 version: 0.0.2
 homepage: https://github.com/swarupbhanjachowdhury/base_api_client
 author: Swarup Bhanja Chowdhury <swarupbhanjachowdhury@gmail.com>
