@@ -39,6 +39,42 @@ class BaseApiClient {
     }
   }
 
+  Future<dynamic> put(String baseUrl, String api, Map<String, String> headers,
+      dynamic payloadObj) async {
+    var uri = Uri.parse(baseUrl + api);
+    var payload = json.encode(payloadObj);
+
+    try {
+      var response = await http
+          .put(uri, headers: headers, body: payload)
+          .timeout(Duration(seconds: TIME_OUT_DURATION));
+      return _processResponse(response);
+    } on SocketException {
+      throw FetchDataException('No internet connection', uri.toString());
+    } on TimeoutException {
+      throw ApiNotRespondingException(
+          'Api taking too long to response', uri.toString());
+    }
+  }
+
+  Future<dynamic> delete(String baseUrl, String api,
+      Map<String, String> headers, dynamic payloadObj) async {
+    var uri = Uri.parse(baseUrl + api);
+    var payload = json.encode(payloadObj);
+
+    try {
+      var response = await http
+          .delete(uri, headers: headers, body: payload)
+          .timeout(Duration(seconds: TIME_OUT_DURATION));
+      return _processResponse(response);
+    } on SocketException {
+      throw FetchDataException('No internet connection', uri.toString());
+    } on TimeoutException {
+      throw ApiNotRespondingException(
+          'Api taking too long to response', uri.toString());
+    }
+  }
+
   dynamic _processResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:

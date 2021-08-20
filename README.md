@@ -1,5 +1,68 @@
 # base_api_client
 
+## Features 
+
+1. Easy REST API Calling (GET, POST, PUT, DELETE)
+2. ERROR handling with alert dialog
+3. Loading Screen while calling any API
+
+
+## Use this package
+ 
+add this line to pubspec.yaml
+
+```yaml
+
+   dependencies:
+
+    base_api_client: ^0.0.2
+
+
+```
+
+import package
+
+```dart
+
+    import 'package:base_api_client/base_api_client.dart';
+
+```
+
+## Example
+
+```dart
+
+class TestApi with BaseAPiController {
+  void getData() async {
+    showLoading();
+    var response = await BaseApiClient()
+        .get('https://jsonplaceholder.typicode.com', '/todos/1', Map())
+        .catchError(handleError);
+
+    if (response == null) return;
+    hideLoading();
+    print(response);
+  }
+
+  void postData() async {
+    showLoading();
+    var data = {"message": "Testing post"};
+    var response = await BaseApiClient()
+        .post('https://jsonplaceholder.typicode.com', '/posts', Map(), data)
+        .catchError(handleError);
+
+    if (response == null) return;
+    hideLoading();
+    print(response);
+  }
+}
+
+```
+
+# Contri
+
+
+
 ## LICENSE
 
 
